@@ -29,5 +29,5 @@ echo "Chaincode ${cname} successfully built."
 
 # Register the chaincode with the validating peer
 cid=`date +%s%N | md5sum | head -c 6`
-echo "Registering chaincode using ID ${cid} ..."
+echo "Registering chaincode using ID: ${cid}"
 docker exec vp0 bash -c "cd ${cpath}${cname};CORE_CHAINCODE_ID_NAME=${cid} CORE_PEER_ADDRESS=0.0.0.0:7051 ./${cname}"
