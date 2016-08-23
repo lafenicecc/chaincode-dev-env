@@ -2,7 +2,7 @@ import requests
 import json
 import base64
 
-chaincode_id = "3112a6"
+chaincode_id = "59de"
 args = ["init", "a", "100", "b", "200"]
 url = "http://127.0.0.1:7050/chaincode"
 
