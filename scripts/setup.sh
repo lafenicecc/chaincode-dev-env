@@ -9,7 +9,7 @@ echo "Checking Docker-engine..."
 command -v docker >/dev/null 2>&1 || { echo >&2 "No docker-engine found, try installing"; curl -sSL https://get.docker.com/ | sh; sudo service docker restart; exit 0; }
 
 echo "Checking Docker-compose..."
-command -v docker-compose >/dev/null 2>&1 || { echo >&2 "No docker-compose found, try installing"; sudo pip install -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com docker-compose; exit 0; }
+command -v docker-compose >/dev/null 2>&1 || { echo >&2 "No docker-compose found, try installing"; sudo pip install docker-compose; exit 0; }
 
 echo "Checking local Docker image..."
 [[ "$(docker images -q hyperledger/fabric-peer:latest 2> /dev/null)" == "" ]] && echo "hyperledger/fabric-peer:latest is not there, may use some time to pull it down for the first time running" && docker pull hyperledger/fabric-peer
