@@ -1,8 +1,7 @@
 import requests
 import json
-import base64
 
-chaincode_id = "59de"
+chaincode_id = "5036"
 args = ["invoke", "a", "b", "5"]
 url = "http://127.0.0.1:7050/chaincode"
 
@@ -10,9 +9,7 @@ headers = {
     'content-type': "application/json",
 }
 
-# For current fabric version, args need to be base64 encoded.
 # Function name would be the first arg.
-args_b64 = [base64.b64encode(i) for i in args]
 payload = {
     "jsonrpc": "2.0",
     "method": "invoke",
@@ -22,7 +19,7 @@ payload = {
             "name": chaincode_id
         },
         "ctorMsg": {
-            "args": args_b64
+            "args": args
         },
     },
     "id": 3
