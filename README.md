@@ -5,6 +5,8 @@ Chaincode (smart contract) development tool for [Hyperledger Fabric](https://git
 * Automatically setup a chaincode test and runtime environment.
 * Scripts to deploy/invoke/query chaincodes. Meanwhile, observe logs/errors for debugging chaincodes.
 
+~Note: Currently, it only supports Fabric v0.6~
+
 ## 1. Chaincode environment setup
 
 Setup the chaincode development environment through Docker containers.
@@ -15,7 +17,15 @@ Setup the chaincode development environment through Docker containers.
 $ bash scripts/setup.sh
 ```
 
-## 2. Build chaincode
+## 2. Start services
+
+Use docker-compose to start a peer and a membersrvc.
+
+```sh
+$ bash scripts/start.sh
+```sh
+
+## 3. Build chaincode
 
 Put your chaincodes in `chaincodes/`. We already put two sample chaincodes there: `mycc1.go` is a copy of [chaincode_example02.go](https://github.com/hyperledger/fabric/blob/master/examples/chaincode/go/chaincode_example02/chaincode_example02.go), and `mycc2.go` is a copy of [map.go](https://github.com/hyperledger/fabric/blob/master/examples/chaincode/go/map/map.go).
 
@@ -45,7 +55,7 @@ You can keep observing this console. It will show a lot of useful logs when test
 
 Open a new console before continuing.
 
-## 3. Deploy and test chaincode:
+## 4. Deploy and test chaincode:
 
 The REST interface port of the chaincode environment container is 7050. You can deploy/invoke/query chaincode via REST API, using the python scripts:
 
