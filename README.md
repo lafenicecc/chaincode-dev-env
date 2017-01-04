@@ -5,7 +5,7 @@ Chaincode (smart contract) development tool for [Hyperledger Fabric](https://git
 * Automatically setup a chaincode test and runtime environment.
 * Scripts to deploy/invoke/query chaincodes. Meanwhile, observe logs/errors for debugging chaincodes.
 
-~Note: Currently, it only supports Fabric v0.6~
+*Note: Currently, it only supports Fabric v0.6*
 
 ## 1. Chaincode environment setup
 
@@ -23,7 +23,7 @@ Use docker-compose to start a peer and a membersrvc.
 
 ```sh
 $ bash scripts/start.sh
-```sh
+```
 
 ## 3. Build chaincode
 
