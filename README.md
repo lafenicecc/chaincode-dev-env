@@ -27,7 +27,7 @@ $ bash scripts/start.sh
 
 ## 3. Build chaincode
 
-Put your chaincodes in `chaincodes/`. We already put two sample chaincodes there: `mycc1.go` is a copy of [chaincode_example02.go](https://github.com/hyperledger/fabric/blob/master/examples/chaincode/go/chaincode_example02/chaincode_example02.go), and `mycc2.go` is a copy of [map.go](https://github.com/hyperledger/fabric/blob/master/examples/chaincode/go/map/map.go).
+Put your chaincodes (currently only support v0.6 chaincodes) in `chaincodes/`. We already put two sample chaincodes there: `mycc1.go` is a copy of [chaincode_example02.go](https://github.com/hyperledger/fabric/blob/v0.6/examples/chaincode/go/chaincode_example02/chaincode_example02.go), and `mycc2.go` is a copy of [map.go](https://github.com/hyperledger/fabric/blob/v0.6/examples/chaincode/go/map/map.go).
 
 Build one of your chaincodes, and register it in the chaincode environment. For example:
 
