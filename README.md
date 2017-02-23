@@ -11,7 +11,7 @@ Chaincode (smart contract) development tool for [Hyperledger Fabric](https://git
 
 Setup the chaincode development environment through Docker containers.
 
-```sh
+```
 # bash scripts/setup.sh
 ```
 
@@ -19,7 +19,7 @@ Setup the chaincode development environment through Docker containers.
 
 Use docker-compose to start a peer and a membersrvc.
 
-```sh
+```
 # bash scripts/start.sh
 ```
 
@@ -29,7 +29,7 @@ Put your chaincodes (currently only support v0.6 chaincodes) in `chaincodes/`. I
 
 Build one of your chaincodes, and register it in the chaincode environment. For example:
 
-```sh
+```
 # bash scripts/build_chaincode.sh mycc1
 ```
 
