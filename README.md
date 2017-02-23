@@ -1,20 +1,18 @@
 # chaincode-dev-env
 
-Chaincode (smart contract) development tool for [Hyperledger Fabric](https://github.com/hyperledger/fabric), mainly provides:
+Chaincode (smart contract) development tool for [Hyperledger Fabric](https://github.com/hyperledger/fabric), mainly supports:
 
-* Automatically setup a chaincode test and runtime environment.
-* Scripts to deploy/invoke/query chaincodes. Meanwhile, observe logs/errors for debugging chaincodes.
+* Automatically setup a chaincode runtime environment.
+* Scripts to deploy/invoke/query chaincodes. Meanwhile, observe logs for debugging chaincodes.
 
-*Note: Currently, it only supports Fabric v0.6*
+*Note: Currently, it only supports Hyperledger Fabric v0.6*
 
 ## 1. Chaincode environment setup
 
 Setup the chaincode development environment through Docker containers.
 
-*This script should be triggered at the upper directory.*
-
 ```sh
-$ bash scripts/setup.sh
+# bash scripts/setup.sh
 ```
 
 ## 2. Start services
@@ -22,17 +20,17 @@ $ bash scripts/setup.sh
 Use docker-compose to start a peer and a membersrvc.
 
 ```sh
-$ bash scripts/start.sh
+# bash scripts/start.sh
 ```
 
 ## 3. Build chaincode
 
-Put your chaincodes (currently only support v0.6 chaincodes) in `chaincodes/`. We already put two sample chaincodes there: `mycc1.go` is a copy of [chaincode_example02.go](https://github.com/hyperledger/fabric/blob/v0.6/examples/chaincode/go/chaincode_example02/chaincode_example02.go), and `mycc2.go` is a copy of [map.go](https://github.com/hyperledger/fabric/blob/v0.6/examples/chaincode/go/map/map.go).
+Put your chaincodes (currently only support v0.6 chaincodes) in `chaincodes/`. I already put two sample chaincodes there: `mycc1.go` is a copy of [chaincode_example02.go](https://github.com/hyperledger/fabric/blob/v0.6/examples/chaincode/go/chaincode_example02/chaincode_example02.go), and `mycc2.go` is a copy of [map.go](https://github.com/hyperledger/fabric/blob/v0.6/examples/chaincode/go/map/map.go).
 
 Build one of your chaincodes, and register it in the chaincode environment. For example:
 
 ```sh
-$ bash scripts/build_chaincode.sh mycc1
+# bash scripts/build_chaincode.sh mycc1
 ```
 
 If build fails, you will see the error messages displayed in the console.
@@ -57,61 +55,61 @@ Open a new console before continuing.
 
 ## 4. Deploy and test chaincode:
 
-The REST interface port of the chaincode environment container is 7050. You can deploy/invoke/query chaincode via REST API, using the python scripts:
+The REST interface port of the chaincode environment container is 7050. You can deploy/invoke/query chaincode via REST API, or simply using these python scripts:
 
 ```
-$ cd scripts/requests/
-$ ls
-deploy.py   invoke.py   query.py
+# cd scripts/requests/
+# ls
+deploy.py   invoke.py   query.py   config.py
 ```
 
 ### Deploy chaincode
 
-Edit deploy.py, modify the chaincode ID and parameters (including the function name and params, according to the chaincode content). For example:
+Edit config.py, modify `chaincode_id` and `deploy_args` (including the function name and params, according to the chaincode content). For example:
 
 ```python
 chaincode_id = "59de"
-args = ["init", "a", "100", "b", "200"]
+deploy_args = ["init", "a", "100", "b", "200"]
 ```
 
 Then, deploy the chaincode.
 
 ```
-$ python deploy.py
+# python deploy.py
 ```
 
 See logs in the first console for details.
 
 ### Invoke chaincode
 
-Similarly, edit invoke.py, modify the chaincode ID and parameters. For example:
+Similarly, edit config.py, modify `invoke_args`. For example:
 
 ```python
 chaincode_id = "59de"
-args = ["invoke", "a", "b", "5"]
+invoke_args = ["invoke", "a", "b", "5"]
 ```
 
 Then, invoke the chaincode.
 
 ```
-$ python invoke.py
+# python invoke.py
 ```
 
 See logs in the first console for details.
 
 ### Query chaincode
 
-Similarly, edit query.py, modify the chaincode ID and parameters. For example:
+Similarly, edit config.py, modify `query_args`. For example:
 
 ```python
 chaincode_id = "59de"
-args = ["query", "a"]
+query_args = ["query", "a"]
 ```
 
 Then, query the chaincode.
 
 ```
-$ python query.py
+# python query.py
 ```
 
 See logs in the first console for details.

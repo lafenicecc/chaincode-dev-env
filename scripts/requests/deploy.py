@@ -1,15 +1,12 @@
 import requests
 import json
 
-chaincode_id = "5036"
-args = ["init", "a", "100", "b", "200"]
-url = "http://127.0.0.1:7050/chaincode"
+from config import url, chaincode_id, deploy_args
+
 
 headers = {
     'content-type': "application/json",
 }
-
-# Function name would be the first arg.
 payload = {
     "jsonrpc": "2.0",
     "method": "deploy",
@@ -19,7 +16,7 @@ payload = {
             "name": chaincode_id
         },
         "ctorMsg": {
-            "args": args
+            "args": deploy_args
         },
     },
     "id": 1

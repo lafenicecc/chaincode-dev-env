@@ -1,15 +1,12 @@
 import requests
 import json
 
-chaincode_id = "5036"
-args = ["invoke", "a", "b", "5"]
-url = "http://127.0.0.1:7050/chaincode"
+from config import url, chaincode_id, invoke_args
+
 
 headers = {
     'content-type': "application/json",
 }
-
-# Function name would be the first arg.
 payload = {
     "jsonrpc": "2.0",
     "method": "invoke",
@@ -19,7 +16,7 @@ payload = {
             "name": chaincode_id
         },
         "ctorMsg": {
-            "args": args
+            "args": invoke_args
         },
     },
     "id": 3
