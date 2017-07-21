@@ -40,3 +40,14 @@ def update_anchor_peers():
         return make_fail_resp(error="peer channel create failed",
                               data={"msg": out})
     return make_ok_resp(data={"msg": out})
+
+
+@ops_rest.route('/install_chaincode', methods=['POST'])
+def install_chaincode():
+    if not
+    cmd = "peer chaincode install -n mycc -v 1.0 -p ${CC_PATH} -o orderer.example.com:7050"
+    status, out = commands.getstatusoutput(cmd=cmd)
+    if status != 0:
+        return make_fail_resp(error="peer chaincode install failed",
+                              data={"msg": out})
+    return make_ok_resp(data={"msg": out})
