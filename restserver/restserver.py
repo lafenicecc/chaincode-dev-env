@@ -1,10 +1,10 @@
 from flask import Flask
 
+from resources import ops_rest
+
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+app.register_blueprint(ops_rest)
 
 if __name__ == '__main__':
     app.run(
