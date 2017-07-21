@@ -1,4 +1,4 @@
-COMPOSE_FILE="docker-compose-2orgs-4peers.yaml"
+COMPOSE_FILE="docker-compose-1peer.yaml"
 
 all:
 	make start
