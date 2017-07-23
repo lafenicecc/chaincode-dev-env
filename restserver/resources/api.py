@@ -16,7 +16,9 @@ ops_rest = Blueprint('ops_rest', __name__,
 @ops_rest.route('/create_channel', methods=['GET'])
 def create_channel():
     cmd = "peer channel create " \
-          + "-o orderer.example.com:7050 -c businesschannel -f ./channel-artifacts/channel.tx"
+          + "-o orderer.example.com:7050 " \
+          + "-c businesschannel " \
+          + "-f ./channel-artifacts/channel.tx"
     status, out = commands.getstatusoutput(cmd=cmd)
     if status != 0:
         return make_fail_resp(error="peer channel create failed",
@@ -27,7 +29,8 @@ def create_channel():
 @ops_rest.route('/join_channel', methods=['GET'])
 def join_channel():
     cmd = "peer channel join " \
-          + "-b businesschannel.block -o orderer.example.com:7050"
+          + "-b businesschannel.block " \
+          + "-o orderer.example.com:7050"
     status, out = commands.getstatusoutput(cmd=cmd)
     if status != 0:
         return make_fail_resp(error="peer channel join failed",
@@ -38,7 +41,9 @@ def join_channel():
 @ops_rest.route('/update_anchor_peers', methods=['GET'])
 def update_anchor_peers():
     cmd = "peer channel create " \
-          + "-o orderer.example.com:7050 -c businesschannel -f ./channel-artifacts/Org1MSPanchors.tx"
+          + "-o orderer.example.com:7050 " \
+          + "-c businesschannel " \
+          + "-f ./channel-artifacts/Org1MSPanchors.tx"
     status, out = commands.getstatusoutput(cmd=cmd)
     if status != 0:
         return make_fail_resp(error="peer channel create failed",
@@ -63,7 +68,8 @@ def install_chaincode():
         return make_fail_resp(error=error_msg, data=r.form)
 
     cmd = "peer chaincode install " \
-          + "-n {0} -v {1} -p {2} -o orderer.example.com:7050".format(name, version, path)
+          + "-n {0} -v {1} -p {2} ".format(name, version, path) \
+          + "-o orderer.example.com:7050"
     status, out = commands.getstatusoutput(cmd=cmd)
     if status != 0:
         return make_fail_resp(error="peer chaincode install failed",
@@ -88,10 +94,60 @@ def instantiate_chaincode():
         return make_fail_resp(error=error_msg, data=r.form)
 
     cmd = "peer chaincode instantiate " \
-          + "-o orderer.example.com:7050 -C businesschannel " \
-          + "-n {0} -v {1} -c {2} -P \"OR ('Org1MSP.member')\"".format(name, version, ctor)
+          + "-o orderer.example.com:7050 " \
+          + "-C businesschannel " \
+          + "-n {0} -v {1} -c {2} ".format(name, version, ctor) \
+          + "-P \"OR ('Org1MSP.member')\""
     status, out = commands.getstatusoutput(cmd=cmd)
     if status != 0:
         return make_fail_resp(error="peer chaincode instantiate failed",
+                              data={"msg": out})
+    return make_ok_resp(data={"msg": out})
+
+
+@ops_rest.route('/invoke_chaincode', methods=['POST'])
+def invoke_chaincode():
+    request_data = r.get_json(force=True, silent=True)
+    if r.form:
+        name = r.form["name"]
+        ctor = r.form["ctor"]
+    else:
+        name = request_data.get("name")
+        ctor = request_data.get("ctor")
+
+    if not name or not ctor:
+        error_msg = "not enough arguments"
+        return make_fail_resp(error=error_msg, data=r.form)
+
+    cmd = "peer chaincode invoke " \
+          + "-o orderer.example.com:7050 " \
+          + "-C businesschannel " \
+          + "-n {0} -c {1}".format(name, ctor)
+    status, out = commands.getstatusoutput(cmd=cmd)
+    if status != 0:
+        return make_fail_resp(error="peer chaincode invoke failed", data={"msg": out})
+    return make_ok_resp(data={"msg": out})
+
+
+@ops_rest.route('/query_chaincode', methods=['POST'])
+def query_chaincode():
+    request_data = r.get_json(force=True, silent=True)
+    if r.form:
+        name = r.form["name"]
+        ctor = r.form["ctor"]
+    else:
+        name = request_data.get("name")
+        ctor = request_data.get("ctor")
+
+    if not name or not ctor:
+        error_msg = "not enough arguments"
+        return make_fail_resp(error=error_msg, data=r.form)
+
+    cmd = "peer chaincode query " \
+          + "-C businesschannel " \
+          + "-n {0} -c {1}".format(name, ctor)
+    status, out = commands.getstatusoutput(cmd=cmd)
+    if status != 0:
+        return make_fail_resp(error="peer chaincode query failed",
                               data={"msg": out})
     return make_ok_resp(data={"msg": out})
