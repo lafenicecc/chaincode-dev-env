@@ -23,6 +23,8 @@ services:
       service: peer0.org1.example.com
     environment:
       - CORE_PEER_TLS_ENABLED=false
+    volumes:
+      - ./chaincodes:/opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincodes/
 
   cli:
     container_name: fabric-cli
