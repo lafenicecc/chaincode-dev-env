@@ -17,7 +17,7 @@ BASE_VERSION=1.0.0
 PROJECT_VERSION=1.0.0
 
 # For testing 1.0.0 images
-IMG_VERSION=1.0.0
+IMG_TAG=1.0.0
 
 echo_b "Downloading fabric images from DockerHub...with tag = ${IMG_TAG}... need a while"
 docker pull hyperledger/fabric-peer:$ARCH-$IMG_TAG
