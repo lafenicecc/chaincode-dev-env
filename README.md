@@ -4,5 +4,5 @@ Chaincode (smart contract) development tool for [Hyperledger Fabric](https://git
 
 * Automatically setup a fabric 1.0 minimum viable environment.
 * Restful API for basic channel and chaincode operations.
-* TBD: chaincode development environment.
 
+Please see [Doc](1.0/chaincode_dev.md) for details.
