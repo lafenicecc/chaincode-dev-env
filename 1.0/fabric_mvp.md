@@ -1,4 +1,4 @@
-## How to start a min fabric network
+## How to start a minmal viable fabric v1.0 network
 
 ### Setup Environment
 
@@ -6,7 +6,7 @@
 $ make setup
 ```
 
-### start a network 
+### Start a network 
 
 ```bash
 $ make start
