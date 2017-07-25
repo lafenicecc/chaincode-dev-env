@@ -23,8 +23,6 @@ services:
       service: peer0.org1.example.com
     environment:
       - CORE_PEER_TLS_ENABLED=false
-    volumes:
-      - ./chaincodes:/opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincodes/
 
   cli:
     container_name: fabric-cli
@@ -43,6 +41,7 @@ services:
       - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
     volumes:
         #- ./e2e_cli/examples:/opt/gopath/src/github.com/hyperledger/fabric/examples
+        - ./mychaincodes:/opt/gopath/src/github.com/hyperledger/fabric/
         - ./e2e_cli/crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./e2e_cli/channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
