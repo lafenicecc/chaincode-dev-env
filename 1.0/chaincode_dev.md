@@ -68,7 +68,7 @@ POST /api/instantiate_chaincode
 {
     "name": "mycc",
     "version": "1.0",
-    "ctor": "{\"Args\":[\"init\",\"a\",\"100\",\"b\",\"200\"]}"
+    "ctor": "`{\"Args\":[\"init\",\"a\",\"100\",\"b\",\"200\"]}`"
 }
 ```
 
@@ -77,7 +77,7 @@ POST /api/upgrade_chaincode
 {
     "name": "mycc",
     "version": "1.1",
-    "ctor": "{\"Args\": [\"re-init\",\"c\",\"500\"]}"
+    "ctor": "`{\"Args\": [\"re-init\",\"c\",\"500\"]}`"
 }
 ```
 
@@ -89,7 +89,7 @@ Invoke the chaincode.
 POST /api/invoke_chaincode
 {
     "name": "mycc",
-    "ctor": "{\"Args\": [\"move\",\"a\",\"b\",\"10\"]}"
+    "ctor": "`{\"Args\": [\"move\",\"a\",\"b\",\"10\"]}`"
 }
 ```
 
@@ -99,6 +99,6 @@ Query the chaincode.
 POST /api/query_chaincode
 {
     "name": "mycc",
-    "ctor": "{\"Args\": [\"query",\"a\"]}"
+    "ctor": "`{\"Args\": [\"query",\"a\"]}`"
 }
 ```
