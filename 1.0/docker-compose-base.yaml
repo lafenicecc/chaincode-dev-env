@@ -40,6 +40,7 @@ services:
     volumes:
         - ./e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ./e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
+        - ./e2e_cli/core.yaml:/etc/hyperledger/fabric/core.yaml
     ports:
       - 7051:7051
       - 7052:7052
@@ -62,6 +63,7 @@ services:
     volumes:
         - ./e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ./e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/fabric/tls
+        - ./e2e_cli/core.yaml:/etc/hyperledger/fabric/core.yaml
     ports:
       - 8051:7051
       - 8052:7052
@@ -84,6 +86,7 @@ services:
     volumes:
         - ./e2e_cli/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/fabric/msp
         - ./e2e_cli/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/fabric/tls
+        - ./e2e_cli/core.yaml:/etc/hyperledger/fabric/core.yaml
     ports:
       - 9051:7051
       - 9052:7052
@@ -106,6 +109,7 @@ services:
     volumes:
         - ./e2e_cli/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp:/etc/hyperledger/fabric/msp
         - ./e2e_cli/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls:/etc/hyperledger/fabric/tls
+        - ./e2e_cli/core.yaml:/etc/hyperledger/fabric/core.yaml
     ports:
       - 10051:7051
       - 10052:7052

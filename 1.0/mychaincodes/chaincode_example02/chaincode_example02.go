@@ -36,7 +36,11 @@ type SimpleChaincode struct {
 
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 	fmt.Println("ex02 Init")
-	_, args := stub.GetFunctionAndParameters()
+	function, args := stub.GetFunctionAndParameters()
+
+        if function == "re-init" {
+                return shim.Success(nil)
+        }
 	var A, B string    // Entities
 	var Aval, Bval int // Asset holdings
 	var err error
@@ -144,6 +148,7 @@ func (t *SimpleChaincode) invoke(stub shim.ChaincodeStubInterface, args []string
 	}
 
 	return shim.Success(nil)
+	//return shim.Error("cc error")
 }
 
 // Deletes an entity from state
